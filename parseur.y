@@ -1,9 +1,12 @@
 %{
 int yylex(void); /* -Wall : avoid implicit call */ int yyerror(const char*); /* same for bison */
 %}
-%token NOMBRE
+
 %token PT_VIRG
+%token INT
+%token VIRGULE
 %start resultat
+
 %%
 resultat: expression ;
 expression:
@@ -25,6 +28,13 @@ point:
  expression PT_VIRG
  | PT_VIRG
 ;
+NOMBRE:
+INT VIRGULE INT
+|INT
+;
+
+
+
 %%
 
 #include <stdio.h>
